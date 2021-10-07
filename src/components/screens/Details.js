@@ -9,9 +9,7 @@ export default function Details() {
     return (
         <SafeAreaView style={{backgroundColor:colors.black,flex:1}}>
                 <PlanetHeader/>
-                {/* <Pressable onPress={()=>navigation.navigate("Home")}>
-                    <Text>Got to Home Page</Text>
-                </Pressable> */}
+
 
                 <StatusBar barStyle='light-content'/>
         </SafeAreaView>
