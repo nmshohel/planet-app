@@ -37,4 +37,8 @@ export const presets={
         fontSize:13,
 
     },
+    small:{
+        ...BASE,
+        fontSize:11
+    }
 }

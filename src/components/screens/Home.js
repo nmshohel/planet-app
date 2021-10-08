@@ -118,7 +118,7 @@ export const PLANET_LIST = [
         {
             flexDirection:'row',
             alignItems:'center',
-            paddingVertical:spacing[5],
+            paddingVertical:spacing[4],
             // borderBottomWidth:1,
             // borderBottomColor:colors.grey,
             justifyContent:'space-between',
@@ -161,10 +161,11 @@ export default function Home({navigation}) {
                     data={PLANET_LIST}
                     renderItem={renderItem}
                     keyExtractor={(item,index)=>item.name}
-                    contentContainerStyle={{padding:spacing[5]}}
+                    contentContainerStyle={{padding:spacing[2]}}
                     ItemSeparatorComponent={()=><View style={{height:0.5,backgroundColor:colors.grey}}/>}
 
                 />
+                <Text preset="h4" style={{textAlign:'center',paddingVertical:15}}>Developed By: N M Shohel</Text>
 
                 <StatusBar barStyle='light-content'/>
         </SafeAreaView>
