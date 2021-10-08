@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { FlatList, Pressable, StatusBar, View,StyleSheet } from 'react-native';
+import { FlatList, Pressable, StatusBar, View,StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PlanetHeader from '../planetHeader'
 import Text from '../text/text';
@@ -119,25 +119,33 @@ export const PLANET_LIST = [
             flexDirection:'row',
             alignItems:'center',
             paddingVertical:spacing[5],
-            borderBottomWidth:1,
-            borderBottomColor:colors.grey,
+            // borderBottomWidth:1,
+            // borderBottomColor:colors.grey,
             justifyContent:'space-between',
         },
         circle:{
             width:20,
             height:20,
             borderRadius:10,
+        },
+        rowCentered:{
+            flexDirection:'row',
+            alignItems:'center',
+        },
+        planetName:{
+        marginLeft:spacing[5],
+        textTransform:'uppercase',
         }
     })
 
     const renderItem=({item, index})=>{
         return(
             <View style={styles.item}>
-                <View style={{flexDirection:'row',alignItems:'center'}}>
+                <View style={styles.rowCentered}>
                     <View style={[styles.circle, {backgroundColor:item.color}]}/>
-                    <Text style={{marginLeft:spacing[5],textTransform:'uppercase'}}>{item.name}</Text>
+                    <Text style={styles.planetName}>{item.name}</Text>
                 </View>
-                <AntDesign name="right" size={16} color={colors.grey}/>
+                <AntDesign name="right" size={12} color={colors.grey}/>
             </View>
         )
 
@@ -153,6 +161,7 @@ export default function Home({navigation}) {
                     renderItem={renderItem}
                     keyExtractor={(item,index)=>item.name}
                     contentContainerStyle={{padding:spacing[5]}}
+                    ItemSeparatorComponent={()=><View style={{height:0.5,backgroundColor:colors.grey}}/>}
 
                 />
 
