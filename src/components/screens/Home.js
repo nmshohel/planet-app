@@ -138,21 +138,22 @@ export const PLANET_LIST = [
         }
     })
 
+
+
+ 
+export default function Home({navigation}) {
     const renderItem=({item, index})=>{
         return(
-            <View style={styles.item}>
+            <TouchableOpacity onPress={()=>navigation.navigate('Details',{planet:item})} style={styles.item}>
                 <View style={styles.rowCentered}>
                     <View style={[styles.circle, {backgroundColor:item.color}]}/>
                     <Text style={styles.planetName}>{item.name}</Text>
                 </View>
                 <AntDesign name="right" size={12} color={colors.grey}/>
-            </View>
+            </TouchableOpacity>
         )
 
         }
-
- 
-export default function Home({navigation}) {
     return (
         <SafeAreaView style={{backgroundColor:colors.black,flex:1}}>
                 <PlanetHeader/>
