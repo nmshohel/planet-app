@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { FlatList, Pressable, StatusBar, View,StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, Pressable, StatusBar, View,StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import PlanetHeader from '../planetHeader'
 import Text from '../text/text';
@@ -142,6 +142,8 @@ export const PLANET_LIST = [
 
  
 export default function Home({navigation}) {
+    const [planetList, setPlanetList]=useState(PLANET_LIST);
+    
     const renderItem=({item, index})=>{
         return(
             <TouchableOpacity onPress={()=>navigation.navigate('Details',{planet:item})} style={styles.item}>
@@ -154,11 +156,31 @@ export default function Home({navigation}) {
         )
 
         }
+
+    const searchFilter=(text)=>{
+        const filteredList=PLANET_LIST.filter(item=>{
+            const itemData=item.name.toUpperCase();
+            const userTypeText=text.toUpperCase();
+
+            return itemData.indexOf(userTypeText)>-1
+        })
+
+        setPlanetList(filteredList);
+
+    }
     return (
         <SafeAreaView style={{backgroundColor:colors.black,flex:1}}>
                 <PlanetHeader/>
+
+                <TextInput
+                    placeholder="Search by Planet Name"
+                    placeholderTextColor={colors.white}
+                    onChangeText={(text)=>searchFilter(text)}
+                    autoCorrect={false}
+                    style={{color:colors.white,padding:spacing[4],borderColor:colors.white,borderWidth:.5,borderRadius:12,marginHorizontal:spacing[4],marginTop:spacing[4]}}
+                />
                 <FlatList 
-                    data={PLANET_LIST}
+                    data={planetList}
                     renderItem={renderItem}
                     keyExtractor={(item,index)=>item.name}
                     contentContainerStyle={{padding:spacing[2]}}
